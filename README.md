@@ -14,7 +14,7 @@ Aplikace pak poběží na `http://127.0.0.1:4173/`.
 
 ## Aktuální funkce
 
-- fotografie je překrytá mřížkou 20 × 10, tedy 200 políčky,
+- fotografie je kompletně překrytá čtvercovou mřížkou 20 × 10, tedy 200 políčky,
 - kliknutí na políčko ho odkryje,
 - lze zvolit 2 až 6 týmů,
 - tahy se po odkrytí automaticky střídají mezi týmy,
