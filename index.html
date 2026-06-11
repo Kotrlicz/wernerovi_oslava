@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foto hádačka</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro" aria-labelledby="app-title">
+        <p class="eyebrow">Týmová hra</p>
+        <h1 id="app-title">Foto hádačka</h1>
+        <p>
+          Odkrývejte políčka, sbírejte indicie a zkuste jako první uhodnout,
+          kdo nebo co je na fotografii.
+        </p>
+      </section>
+
+      <section class="game-panel" aria-label="Herní plocha">
+        <div class="toolbar">
+          <label>
+            Počet týmů
+            <select id="team-count" aria-label="Počet týmů">
+              <option value="2">2 týmy</option>
+              <option value="3">3 týmy</option>
+              <option value="4">4 týmy</option>
+              <option value="5">5 týmů</option>
+              <option value="6">6 týmů</option>
+            </select>
+          </label>
+          <button id="reset-board" type="button">Zakrytovat znovu</button>
+        </div>
+
+        <div class="scoreboard" id="scoreboard" aria-live="polite"></div>
+
+        <div class="question-card">
+          <span>Otázka k fotce</span>
+          <strong id="question-text">Kde byla tato fotografie pořízena?</strong>
+        </div>
+
+        <div class="photo-board" aria-label="Zakrytá fotografie">
+          <img
+            id="photo"
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=80"
+            alt="Zkušební fotografie horské krajiny u jezera"
+          />
+          <div class="tile-grid" id="tile-grid" aria-label="Kliknutím odkrývejte políčka"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
