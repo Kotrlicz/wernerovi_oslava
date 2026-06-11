@@ -19,4 +19,4 @@ Aplikace pak poběží na `http://127.0.0.1:4173/`.
 - lze zvolit 2 až 6 týmů,
 - tahy se po odkrytí automaticky střídají mezi týmy,
 - počítadlo ukazuje, kolik políček odkryl každý tým,
-- tlačítko „Zakrytovat znovu“ vrátí fotku do původního zakrytého stavu.
+- tlačítko „Resetovat“ vrátí fotku do původního zakrytého stavu.

@@ -101,6 +101,17 @@ select,
 
 select {
   padding: 0 42px 0 16px;
+  color-scheme: light;
+}
+
+select option {
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+select option:checked {
+  color: #ffffff;
+  background: #2563eb;
 }
 
 .toolbar button {
@@ -126,15 +137,15 @@ select {
   align-items: center;
   padding: 10px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--muted);
+  background: rgba(255, 255, 255, 0.18);
+  color: #f8fafc;
   font-weight: 800;
 }
 
 .team-pill.active {
   outline: 2px solid var(--accent);
   color: var(--text);
-  background: rgba(56, 189, 248, 0.16);
+  background: rgba(56, 189, 248, 0.2);
 }
 
 .question-card {
