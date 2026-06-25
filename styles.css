@@ -42,6 +42,67 @@ select {
   margin-bottom: 28px;
 }
 
+.start-screen {
+  max-width: 760px;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(20px);
+}
+
+.start-lead {
+  max-width: 620px;
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.start-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: end;
+}
+
+.start-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#start-game {
+  min-height: 44px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+#start-game:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.team-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent);
@@ -101,7 +162,8 @@ h1 {
 
 select,
 .toolbar button,
-.guess-button {
+.guess-button,
+.start-form select {
   min-height: 44px;
   border: 0;
   border-radius: 999px;

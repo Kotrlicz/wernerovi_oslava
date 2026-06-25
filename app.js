@@ -10,7 +10,11 @@ const QUESTIONS = {
 const grid = document.querySelector("#tile-grid");
 const photo = document.querySelector("#photo");
 const questionText = document.querySelector("#question-text");
+const startScreen = document.querySelector("#start-screen");
+const gamePanel = document.querySelector("#game-panel");
 const teamCountSelect = document.querySelector("#team-count");
+const teamSummary = document.querySelector("#team-summary");
+const startGameButton = document.querySelector("#start-game");
 const scoreboard = document.querySelector("#scoreboard");
 const guessActions = document.querySelector("#guess-actions");
 const resetButton = document.querySelector("#reset-board");
@@ -19,7 +23,7 @@ const revealAllButton = document.querySelector("#reveal-all");
 const nextPhotoButton = document.querySelector("#next-photo");
 const sessionStatus = document.querySelector("#session-status");
 
-let teamCount = Number(teamCountSelect.value);
+let teamCount = 2;
 let activeTeam = 0;
 let teamPoints = [];
 let revealedByTeam = [];
@@ -38,6 +42,32 @@ function shuffle(array) {
     [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
   }
   return copy;
+}
+
+function teamCountLabel(count) {
+  if (count === 1) {
+    return "1 tým";
+  }
+
+  if (count >= 2 && count <= 4) {
+    return `${count} týmy`;
+  }
+
+  return `${count} týmů`;
+}
+
+function updateTeamSummary() {
+  teamSummary.textContent = teamCountLabel(teamCount);
+}
+
+function startGame() {
+  teamCount = Number(teamCountSelect.value);
+  updateTeamSummary();
+  startScreen.hidden = true;
+  startScreen.classList.add("hidden");
+  gamePanel.hidden = false;
+  gamePanel.classList.remove("hidden");
+  initSession();
 }
 
 function initTeamState() {
@@ -235,26 +265,8 @@ function loadNextPhoto() {
   whenPhotoReady(finishPhotoLoad);
 }
 
-teamCountSelect.addEventListener("change", (event) => {
-  teamCount = Number(event.target.value);
-  const pointsBackup = [...teamPoints];
-  initTeamState();
-  teamPoints = pointsBackup.slice(0, teamCount);
-  while (teamPoints.length < teamCount) {
-    teamPoints.push(0);
-  }
-  activeTeam = 0;
-  if (currentPhoto) {
-    resetCurrentRound();
-  } else {
-    renderScoreboard();
-    renderGuessActions();
-  }
-});
-
+startGameButton.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetCurrentRound);
 resetOrderButton.addEventListener("click", resetPhotoOrder);
 revealAllButton.addEventListener("click", revealAllTiles);
 nextPhotoButton.addEventListener("click", loadNextPhoto);
-
-initSession();

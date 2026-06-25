@@ -8,17 +8,15 @@
   </head>
   <body>
     <main class="app-shell">
-      <section class="intro" aria-labelledby="app-title">
+      <section class="start-screen" id="start-screen" aria-labelledby="app-title">
         <p class="eyebrow">Týmová hra</p>
         <h1 id="app-title">Foto hádačka</h1>
-        <p>
+        <p class="start-lead">
           Odkrývejte políčka, sbírejte indicie a zkuste uhodnout, kdo je na
           fotografii — případně i kde byla pořízena.
         </p>
-      </section>
 
-      <section class="game-panel" aria-label="Herní plocha">
-        <div class="toolbar">
+        <div class="start-form">
           <label>
             Počet týmů
             <select id="team-count" aria-label="Počet týmů">
@@ -29,6 +27,13 @@
               <option value="6">6 týmů</option>
             </select>
           </label>
+          <button id="start-game" type="button">Začít hru</button>
+        </div>
+      </section>
+
+      <section class="game-panel hidden" id="game-panel" aria-label="Herní plocha" hidden>
+        <div class="toolbar">
+          <p class="team-summary" id="team-summary" aria-live="polite"></p>
           <div class="toolbar-actions">
             <button id="reset-board" type="button">Resetovat kolo</button>
             <button id="reset-order" type="button">Resetovat pořadí</button>
@@ -57,7 +62,7 @@
       </section>
     </main>
 
-    <script src="photos.js?v=2"></script>
-    <script src="app.js?v=2"></script>
+    <script src="photos.js?v=3"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
