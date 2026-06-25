@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foto hádačka</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro" aria-labelledby="app-title">
+        <p class="eyebrow">Týmová hra</p>
+        <h1 id="app-title">Foto hádačka</h1>
+        <p>
+          Odkrývejte políčka, sbírejte indicie a zkuste uhodnout, kdo je na
+          fotografii — případně i kde byla pořízena.
+        </p>
+      </section>
+
+      <section class="game-panel" aria-label="Herní plocha">
+        <div class="toolbar">
+          <label>
+            Počet týmů
+            <select id="team-count" aria-label="Počet týmů">
+              <option value="2">2 týmy</option>
+              <option value="3">3 týmy</option>
+              <option value="4">4 týmy</option>
+              <option value="5">5 týmů</option>
+              <option value="6">6 týmů</option>
+            </select>
+          </label>
+          <div class="toolbar-actions">
+            <button id="reset-board" type="button">Resetovat kolo</button>
+            <button id="reveal-all" type="button">Odkrýt celou fotku</button>
+            <button id="next-photo" type="button">Další fotka</button>
+          </div>
+        </div>
+
+        <p class="session-status" id="session-status" aria-live="polite"></p>
+
+        <div class="scoreboard" id="scoreboard" aria-live="polite"></div>
+
+        <div class="question-card">
+          <span>Otázka k fotce</span>
+          <strong id="question-text">Kdo je na fotce?</strong>
+        </div>
+
+        <div class="guess-actions" id="guess-actions" aria-label="Udělit bod týmu"></div>
+
+        <div class="photo-board" aria-label="Zakrytá fotografie">
+          <img id="photo" src="" alt="Zakrytá fotografie pro hru" />
+          <div class="tile-grid" id="tile-grid" aria-label="Kliknutím odkrývejte políčka"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="photos.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
