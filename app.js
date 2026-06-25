@@ -187,6 +187,18 @@ function resetCurrentRound() {
   renderGuessActions();
 }
 
+function whenPhotoReady(callback) {
+  const run = () => requestAnimationFrame(callback);
+
+  if (typeof photo.decode === "function") {
+    photo.decode().then(run).catch(run);
+    return;
+  }
+
+  photo.addEventListener("load", run, { once: true });
+  photo.addEventListener("error", run, { once: true });
+}
+
 function loadNextPhoto() {
   if (photoQueue.length === 0) {
     currentPhoto = null;
@@ -202,13 +214,16 @@ function loadNextPhoto() {
   }
 
   currentPhoto = photoQueue.shift();
-  photo.src = photoUrl(currentPhoto.file);
   photo.alt = "Zakrytá fotografie pro hru";
   questionText.textContent = QUESTIONS[currentPhoto.type];
   activeTeam = 0;
   revealedByTeam = Array.from({ length: teamCount }, () => 0);
 
   const finishPhotoLoad = () => {
+    if (!photo.naturalWidth) {
+      return;
+    }
+
     buildBoard();
     setRoundActive(true);
     renderScoreboard();
@@ -216,14 +231,8 @@ function loadNextPhoto() {
     updateSessionStatus();
   };
 
-  if (photo.complete) {
-    finishPhotoLoad();
-  } else {
-    photo.onload = () => {
-      photo.onload = null;
-      finishPhotoLoad();
-    };
-  }
+  photo.src = photoUrl(currentPhoto.file);
+  whenPhotoReady(finishPhotoLoad);
 }
 
 teamCountSelect.addEventListener("change", (event) => {

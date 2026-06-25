@@ -209,18 +209,24 @@ select option:checked {
 }
 
 .photo-board {
-  position: relative;
   width: 100%;
-  overflow: hidden;
   border-radius: 22px;
   background: #111827;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
-.photo-board img {
+.photo-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.photo-frame img {
   width: 100%;
   height: auto;
   display: block;
+  vertical-align: top;
 }
 
 .tile-grid {
@@ -245,9 +251,10 @@ button.tile {
   border-radius: 0;
   appearance: none;
   color: rgba(15, 23, 42, 0.72);
-  font-size: clamp(0.75rem, 2.2vw, 1.35rem);
+  font-size: clamp(0.85rem, 2.4vw, 1.5rem);
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   background: var(--tile);
   cursor: pointer;
   transition: opacity 180ms ease, background 180ms ease, color 180ms ease;
