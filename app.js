@@ -15,6 +15,7 @@ const teamCountSelect = document.querySelector("#team-count");
 const scoreboard = document.querySelector("#scoreboard");
 const guessActions = document.querySelector("#guess-actions");
 const resetButton = document.querySelector("#reset-board");
+const resetOrderButton = document.querySelector("#reset-order");
 const revealAllButton = document.querySelector("#reveal-all");
 const nextPhotoButton = document.querySelector("#next-photo");
 const sessionStatus = document.querySelector("#session-status");
@@ -43,6 +44,12 @@ function shuffle(array) {
 function initTeamState() {
   teamPoints = Array.from({ length: teamCount }, () => 0);
   revealedByTeam = Array.from({ length: teamCount }, () => 0);
+}
+
+function resetPhotoOrder() {
+  photoQueue = shuffle(window.PHOTO_CATALOG);
+  activeTeam = 0;
+  loadNextPhoto();
 }
 
 function initSession() {
@@ -215,6 +222,7 @@ teamCountSelect.addEventListener("change", (event) => {
 });
 
 resetButton.addEventListener("click", resetCurrentRound);
+resetOrderButton.addEventListener("click", resetPhotoOrder);
 revealAllButton.addEventListener("click", revealAllTiles);
 nextPhotoButton.addEventListener("click", loadNextPhoto);
 
