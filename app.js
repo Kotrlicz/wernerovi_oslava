@@ -144,7 +144,7 @@ function revealTile(tile) {
 }
 
 function tileLabel(column, row) {
-  return `${String.fromCharCode(97 + column)}${rows - row}`;
+  return `${String.fromCharCode(65 + column)}${rows - row}`;
 }
 
 function buildBoard() {
@@ -207,11 +207,23 @@ function loadNextPhoto() {
   questionText.textContent = QUESTIONS[currentPhoto.type];
   activeTeam = 0;
   revealedByTeam = Array.from({ length: teamCount }, () => 0);
-  buildBoard();
-  setRoundActive(true);
-  renderScoreboard();
-  renderGuessActions();
-  updateSessionStatus();
+
+  const finishPhotoLoad = () => {
+    buildBoard();
+    setRoundActive(true);
+    renderScoreboard();
+    renderGuessActions();
+    updateSessionStatus();
+  };
+
+  if (photo.complete) {
+    finishPhotoLoad();
+  } else {
+    photo.onload = () => {
+      photo.onload = null;
+      finishPhotoLoad();
+    };
+  }
 }
 
 teamCountSelect.addEventListener("change", (event) => {
