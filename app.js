@@ -1,6 +1,5 @@
-const columns = 20;
-const rows = 10;
-const tileCount = columns * rows;
+const columns = 10;
+const rows = 5;
 const teamColors = ["#38bdf8", "#fb7185", "#a3e635", "#c084fc", "#f97316", "#2dd4bf"];
 
 const QUESTIONS = {
@@ -144,16 +143,27 @@ function revealTile(tile) {
   }
 }
 
+function tileLabel(column, row) {
+  return `${String.fromCharCode(97 + column)}${rows - row}`;
+}
+
 function buildBoard() {
   grid.innerHTML = "";
+  grid.style.setProperty("--cols", columns);
+  grid.style.setProperty("--rows", rows);
 
-  for (let index = 0; index < tileCount; index += 1) {
-    const tile = document.createElement("button");
-    tile.className = "tile";
-    tile.type = "button";
-    tile.setAttribute("aria-label", `Odkrýt políčko ${index + 1}`);
-    tile.addEventListener("click", () => revealTile(tile));
-    grid.append(tile);
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      const label = tileLabel(column, row);
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.type = "button";
+      tile.textContent = label;
+      tile.dataset.label = label;
+      tile.setAttribute("aria-label", `Odkrýt políčko ${label}`);
+      tile.addEventListener("click", () => revealTile(tile));
+      grid.append(tile);
+    }
   }
 }
 

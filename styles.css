@@ -228,12 +228,14 @@ select option:checked {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(var(--cols, 10), 1fr);
+  grid-template-rows: repeat(var(--rows, 5), 1fr);
 }
 
 button.tile {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -243,15 +245,19 @@ button.tile {
   border: 1px solid rgba(15, 23, 42, 0.5);
   border-radius: 0;
   appearance: none;
-  color: transparent;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: clamp(0.75rem, 2.2vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
   background: var(--tile);
   cursor: pointer;
-  transition: opacity 180ms ease, background 180ms ease;
+  transition: opacity 180ms ease, background 180ms ease, color 180ms ease;
 }
 
 button.tile:hover,
 button.tile:focus-visible {
   z-index: 1;
+  color: rgba(15, 23, 42, 0.92);
   background: var(--tile-hover);
   outline: 2px solid #ffffff;
   outline-offset: -2px;
